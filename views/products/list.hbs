@@ -1,0 +1,224 @@
+<div class="container p-4">
+    <div class="row">
+
+        <div class="col-xs-12 col-md-3 col-md-pull-9">
+            <div class="panel panel-default">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="panel-heading text-center">
+                            <h3>
+                                <div class="panel-title">{{profile.PERSONA_NOMBRE}}</div>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="card-body text-secondary">
+                        <img id="previewProfile{{@index}}" src="" class="img-thumbnail" width="300px">
+                        <input type="hidden" id="responseProfile{{@index}}" class="form-control"
+                            value="{{profile.PERSONA_IMAGEN}}">
+                        <div class="mb-3">
+                        </div>
+                        <div class="mb-3">
+                        </div>
+                        <div class="panel-body">
+                            <i class="far fa-envelope"> {{profile.PERSONA_EMAIL}}</i>
+                        </div>
+                        <div class="mb-3">
+                        </div>
+                        <div class="panel-body">
+                            <i class="fal fa-phone"> {{profile.PERSONA_TELEFONO}}</i>
+                        </div>
+                        <div class="mb-3">
+                        </div>
+                        <div class="panel-body">
+                            <i class="fal fa-map-marked-alt"> {{profile.PARROQUIA}}</i>
+                        </div>
+                        <div class="mb-3">
+                        </div>
+                        <div class="d-grid gap-3">
+                            <a href="/products/user" class="btn btn-outline-primary">
+                                <i class="fal fa-user"> Actualizar Perfil</i>
+                            </a>
+                            {{#if admin}}
+                            <a href="/administrator/users" class="btn btn-outline-secondary"> Administrar</a>
+                            {{/if}}
+                            <a href="/shop" class="btn btn-outline-warning">
+                                <i class="fal fa-cart-arrow-down"> Comprar</i>
+                            </a>
+                            <a href="/products/add" class="btn btn-outline-danger">
+                                <i class="fal fa-shopping-basket"> Vender</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-9 col-md-push-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <div class="row">
+
+                            {{!-- --}}
+
+                            {{#if addProducts}}
+                            <div class="col-md-4 mx-auto">
+                                <div class="card card-body text-center">
+                                    <p>No hay productos agregados</p>
+                                    <a href="/products/add">Agregue Uno!</a>
+                                </div>
+                            </div>
+                            {{/if}}
+
+                            <input type="hidden" id="offerLength" class="form-control" value="{{numOffers}}">
+                            {{#if offer}}
+                            <div class="rounded-pill clearfix"
+                                style="border: 1px dotted #0D6EFD; text-align:center; center{margin:16px 0;">
+                                <h5 style="color: #0D6EFD;">Productos Agregados en Oferta</h5>
+                            </div>
+                            <div class="mb-3">
+                            </div>
+                            {{#each offer}}
+                            <div class="col-md-3">
+                                <div class="card mb-4 shadow-sm">
+
+                                    <div class="card-body">
+                                        <h3 class="card-title text-uppercase text-center">
+                                            {{PRODUCTO_NOMBRE}}
+                                        </h3>
+                                        <img id="previewOffer{{@index}}" src="" class="card-img-top" width="90px"
+                                            height="150px">
+                                        <input type="hidden" id="responseOffer{{@index}}" class="form-control"
+                                            value="{{PRODUCTO_IMAGEN}}">
+                                        <p class="m-2">Precio: $ {{PRODUCTO_PRECIO}}</p>
+                                        <p class="m-2">Cantidad Disponible: {{PRODUCTO_CANTIDAD}}
+                                            ({{PRESENTACION_NOMBRE}})</p>
+                                        <p class="m-2">Caduca: {{timeago PRODUCTO_FECHALIMITE}}</p>
+
+                                        <div class="d-grid gap-3">
+                                            <a href="/products/edit/{{PRODUCTO_ID}}"
+                                                class="btn btn-outline-primary">Actualizar</a>
+                                            <a href="/products/deleteoffer/{{PRODUCTO_ID}}"
+                                                class="btn btn-outline-warning">Eliminar Oferta</a>
+                                            <a href="/products/delete/{{PRODUCTO_ID}}"
+                                                class="btn btn-outline-danger">Eliminar</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                            {{/if}}
+
+                            {{!-- --}}
+
+                            <input type="hidden" id="productsLength" class="form-control" value="{{numProducts}}">
+                            {{#if products}}
+                            <div class="rounded-pill clearfix"
+                                style="border: 1px dotted #0D6EFD; text-align:center; center{margin:16px 0;">
+                                <h5 style="color: #0D6EFD;">Productos sin Oferta</h5>
+                            </div>
+                            <div class="mb-3">
+                            </div>
+                            {{#each products}}
+                            <div class="col-md-3">
+                                <div class="card mb-4 shadow-sm">
+
+                                    <div class="card-body">
+                                        <h3 class="card-title text-uppercase text-center">
+                                            {{PRODUCTO_NOMBRE}}
+                                        </h3>
+                                        <img id="previewProduct{{@index}}" src="" class="card-img-top" width="90px"
+                                            height="150px">
+                                        <input type="hidden" id="responseProduct{{@index}}" class="form-control"
+                                            value="{{PRODUCTO_IMAGEN}}">
+                                        <p class="m-2">Precio: $ {{PRODUCTO_PRECIO}}</p>
+                                        <p class="m-2">Cantidad Disponible: {{PRODUCTO_CANTIDAD}}
+                                            ({{PRESENTACION_NOMBRE}})</p>
+                                        <p class="m-2">Caduca: {{timeago PRODUCTO_FECHALIMITE}}</p>
+
+                                        <div class="d-grid gap-3">
+                                            <a href="/products/edit/{{PRODUCTO_ID}}"
+                                                class="btn btn-outline-primary">Actualizar</a>
+                                            <a href="/products/delete/{{PRODUCTO_ID}}"
+                                                class="btn btn-outline-danger">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function b64toBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+
+        var blob = new Blob(byteArrays, { type: contentType });
+        return blob;
+    }
+
+    var contentType = 'image/png';
+
+    // Cargar Imagen Perfil
+    var responseProfile = document.getElementById('responseProfile');
+    var b64DataProfile = responseProfile.value;
+
+    var blobProfile = b64toBlob(b64DataProfile, contentType);
+    var blobUrlProfile = URL.createObjectURL(blobProfile);
+
+    var previewProfile = document.getElementById('previewProfile');
+    previewProfile.src = blobUrlProfile;
+
+    //Cargar Imagen Oferta
+    var offerLength = document.getElementById('offerLength');
+    var b64DataOffer = [];
+    var blobUrlOffer = [];
+
+    for (var i = 0; i < offerLength.value; i++) {
+        b64DataOffer[i] = document.getElementById('responseOffer' + i).value;
+        var blobOffer = b64toBlob(b64DataOffer[i], contentType);
+        blobUrlOffer[i] = URL.createObjectURL(blobOffer);
+
+        var previewOffer = document.getElementById('previewOffer' + i);
+        previewOffer.src = blobUrlOffer[i];
+    }
+
+    //Cargar Imagen Productos
+    var productsLength = document.getElementById('productsLength');
+    var b64DataProduct = [];
+    var blobUrlProduct = [];
+
+    for (var i = 0; i < productsLength.value; i++) {
+        b64DataProduct[i] = document.getElementById('responseProduct' + i).value;
+        var blobProduct = b64toBlob(b64DataProduct[i], contentType);
+        blobUrlProduct[i] = URL.createObjectURL(blobProduct);
+
+        var previewProduct = document.getElementById('previewProduct' + i);
+        previewProduct.src = blobUrlProduct[i];
+    }
+
+</script>

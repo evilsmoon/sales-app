@@ -1,0 +1,84 @@
+<div class="container p-4">
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="thumbnail row text-center">
+                <table class="table caption-top">
+                    <caption>Lista de Presentación</caption>
+                    <thead class="text-center table-secondary">
+                        <tr class="card-title text-uppercase">
+                            <td>N°</td>
+                            <td>Nombre</td>
+                            <td>Eliminar</td>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        {{#each presentation}}
+                        <tr>
+                            <td>{{PRESENTACION_ID}}</td>
+                            <td>{{PRESENTACION_NOMBRE}}</td>
+                            <td>
+                                <a href="/administrator/presentation/{{PRESENTACION_ID}}"
+                                    class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark mb-3">
+                <div class="card-header text-center card-title">
+                    <h5>Agregar Presentación</h5>
+                </div>
+                <div class="card-body text-dark">
+                    <form action="/administrator/presentation" method="POST" class="row g-3 needs-validation"
+                        enctype="multipart/form-data">
+                        <p>
+                            <label class="form-label">Nombre:</label>
+                            <input type="text" name="PRESENTACION_NOMBRE" style="text-transform:uppercase"
+                                class="form-control" placeholder="Nombre" required autofocus>
+                        </p>
+
+                        <div class="text-center">
+                            <button class="btn btn-success">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail row text-center" style="min-height:260px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">Acciones</h3>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="d-grid gap-3">
+                        <a href="/administrator/users" class="btn btn-outline-success">
+                            <i class="fal fa-user"> Activar Usuarios</i>
+                        </a>
+                        <a href="/administrator/addAdmin" class="btn btn-outline-secondary">
+                            <i class="fal fa-check-circle"> Agregar Administrador</i>
+                        </a>
+                        <a href="/administrator/addUser" class="btn btn-outline-danger">
+                            <i class="fal fa-times-circle"> Eliminar Usuarios</i>
+                        </a>
+                        <a href="/administrator/measurements" class="btn btn-outline-primary">
+                            <i class="far fa-ruler"> Unidad de Medida</i>
+                        </a>
+                        <a href="/administrator/category" class="btn btn-outline-secondary">
+                            <i class="fal fa-list"> Categoria</i>
+                        </a>
+                        <a href="/administrator/information" class="btn btn-outline-warning">
+                            <i class="fal fa-info-circle"> Información</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

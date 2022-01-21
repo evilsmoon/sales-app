@@ -1,0 +1,119 @@
+<div class="container p-4">
+    <div class="row">
+
+        <div class="col-md-7">
+            <div class="thumbnail row">
+                <table class="table caption-top">
+                    <caption>Lista de colaboradores de la asociación</caption>
+                    <thead class="text-center table-secondary">
+                        <tr class="card-title text-uppercase">
+                            <td>Nombre</td>
+                            <td>Cargo</td>
+                            <td>Descripcion</td>
+                            <td>Eliminar</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each information}}
+                        <tr>
+                            <td>{{INFORMACION_NOMBRE}}</td>
+                            <td>{{INFORMACION_CARGO}}</td>
+                            <td>{{INFORMACION_DESCRIPCION}}</td>
+                            <td>
+                                <a href="/administrator/information/{{INFORMACION_ID}}"
+                                    class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-dark mb-3">
+                <div class="card-header text-center card-title">
+                    <h5>Agregar Colaboradores</h5>
+                </div>
+                <div class="card-body text-dark">
+                    <form action="/administrator/information" method="POST" class="row g-3 needs-validation"
+                        enctype="multipart/form-data">
+                        <p>
+                            <label class="form-label">Nombre:</label>
+                            <input type="text" name="INFORMACION_NOMBRE" class="form-control" placeholder="Nombre"
+                                maxlength="60"
+                                oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                required autofocus>
+
+                            <label class="form-label">Cargo:</label>
+                            <input type="text" name="INFORMACION_CARGO" class="form-control" placeholder="Cargo"
+                                maxlength="60"
+                                oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                required>
+
+                            <label class="form-label">Descripción:</label>
+                            <textarea name="INFORMACION_DESCRIPCION" rows="4" class="form-control"
+                                placeholder="Descripción" maxlength="600"
+                                oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                required></textarea>
+                        </p>
+                        <p>
+                            <input type="file" accept="image/*" name="SUBIR_IMAGEN" class="form-control"
+                                onchange="loadFile(event)">
+                            <font size=2 class="text-danger">Solo subir imagenes</font>
+                        <div class="mb-3 text-center">
+                            <img id="output" class="img-thumbnail" width="300px" />
+                        </div>
+                        </p>
+
+                        <div class="text-center">
+                            <button class="btn btn-success">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="thumbnail row text-center" style="min-height:260px;">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">Acciones</h3>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="d-grid gap-3">
+                        <a href="/administrator/users" class="btn btn-outline-success">
+                            <i class="fal fa-user"> Activar Usuarios</i>
+                        </a>
+                        <a href="/administrator/addAdmin" class="btn btn-outline-secondary">
+                            <i class="fal fa-check-circle"> Agregar Administrador</i>
+                        </a>
+                        <a href="/administrator/addUser" class="btn btn-outline-danger">
+                            <i class="fal fa-times-circle"> Eliminar Usuarios</i>
+                        </a>
+                        <a href="/administrator/presentation" class="btn btn-outline-primary">
+                            <i class="fal fa-sack"> Presentación</i>
+                        </a>
+                        <a href="/administrator/measurements" class="btn btn-outline-secondary">
+                            <i class="far fa-ruler"> Unidad de Medida</i>
+                        </a>
+                        <a href="/administrator/category" class="btn btn-outline-warning">
+                            <i class="fal fa-list"> Categoria</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    var loadFile = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('output');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>
