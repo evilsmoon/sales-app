@@ -1,0 +1,11 @@
+{
+    "name": "salesapp",
+    "version": "1.0.0",
+    "decription": "test app",
+    "main": "app.js",
+    "scripts": {
+        "test": "node app.js"
+    },
+    "author": "",
+    "license": "ISC"
+}
